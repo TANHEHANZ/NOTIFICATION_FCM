@@ -15,7 +15,7 @@ export default function Login({ fcmToken }: LoginProps) {
 
   return (
     <View style={loginStyles.container}>
-      <GradientBackground />
+      {/* <GradientBackground /> */}
       <StatusBar style="light" backgroundColor="#000000" translucent={false} />
       <LoginPipeline />
       <ButtonPrimary
