@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-export default function Alertas() {
+export default function Configuraciones() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Alerta 🚀</Text>
+      <Text>Configuraciones🚀</Text>
     </View>
   );
 }

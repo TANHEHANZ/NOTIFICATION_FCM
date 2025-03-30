@@ -1,39 +1,29 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import ButtonPrimary from "../../shared/ui/button";
+import { loginStyles } from "../../shared/components/styles/login.styles";
+import LoginPipeline from "../../modules/login/pipeline";
+import { StatusBar } from "expo-status-bar";
+import useLinkingListener from "../../infraestructure/hooks/useLinkingListener";
+import { redirect } from "../../infraestructure/helpers/redirect";
+interface LoginProps {
+  fcmToken: string | null;
+}
 
-export default function Login() {
-  const handleGoogleLogin = () => {
-    console.log("se pulso");
-  };
+export default function Login({ fcmToken }: LoginProps) {
+  useLinkingListener();
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Login componente</Text>
-      <Text>Iniciar secion con Google</Text>
-
+    <View style={loginStyles.container}>
+      {/* <GradientBackground /> */}
+      <StatusBar style="light" backgroundColor="#000000" translucent={false} />
+      <LoginPipeline />
       <ButtonPrimary
-        title="Iniciar sesión con Google"
-        icon="google"
-        iconType="AntDesign"
+        title="Iniciar sesión"
         variant="primary"
-        onPress={handleGoogleLogin}
-      />
-
-      <ButtonPrimary
-        title="Continuar con Google"
+        size="large"
         icon="google"
         iconType="AntDesign"
-        variant="outline"
-        iconPosition="right"
-        onPress={handleGoogleLogin}
-      />
-
-      <ButtonPrimary
-        title="Google"
-        icon="google"
-        iconType="AntDesign"
-        variant="secondary"
-        onPress={handleGoogleLogin}
+        onPress={redirect()}
       />
     </View>
   );

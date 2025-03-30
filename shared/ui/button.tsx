@@ -1,93 +1,127 @@
 import React from "react";
-import { ViewStyle } from "react-native";
-import { Pressable, Text, StyleSheet } from "react-native";
+import { ViewStyle, Pressable, Text, StyleSheet } from "react-native";
 import Icon from "./icon";
-import { BUTTON_SIZES, BUTTON_VARIANTS } from "../../infraestructure/constants/button";
 import { ButtonProps } from "../../infraestructure/models/interfaces/buttons";
-
-
-
-
-
+import { theme } from "../components/styles/global";
 
 const ButtonPrimary: React.FC<ButtonProps> = ({
   title,
+  variant = "primary",
+  size = "medium",
   icon,
   iconType,
-  variant = 'primary',
-  size = 'medium',
-  iconPosition = 'left',
   disabled = false,
-  color,
   onPress,
   style,
-  ...props
 }) => {
-  const variantStyle = BUTTON_VARIANTS[variant];
-  const sizeStyle = BUTTON_SIZES[size];
-
-  const buttonStyle : ViewStyle = {
-    ...styles.button,
-    paddingHorizontal: sizeStyle.padding.horizontal,
-    paddingVertical: sizeStyle.padding.vertical,
-    backgroundColor: variantStyle.background,
-    borderColor: variantStyle.border,
-    borderWidth: variant === 'outline' ? 2 : 0,
-    opacity: disabled ? 0.5 : 1,
-    ...(style as ViewStyle),
+  // Estilos basados en variant
+  const getVariantStyle = (): ViewStyle => {
+    switch (variant) {
+      case "secondary":
+        return {
+          backgroundColor: theme.colors.secondary,
+          borderWidth: 0,
+        };
+      case "outline":
+        return {
+          backgroundColor: "transparent",
+          borderWidth: 2,
+          borderColor: theme.colors.primary,
+        };
+      case "primary":
+      default:
+        return {
+          backgroundColor: theme.colors.primary,
+          borderWidth: 0,
+        };
+    }
   };
 
-  const textStyle = [
-    styles.text,
-    {
-      fontSize: sizeStyle.fontSize,
-      color: color || variantStyle.text,
-    },
-  ];
+  const getSizeStyle = () => {
+    switch (size) {
+      case "small":
+        return {
+          paddingHorizontal: 12,
+          height: 32,
+          fontSize: 14,
+          iconSize: 16,
+        };
+      case "large":
+        return {
+          paddingHorizontal: 48,
+          height: 48,
+          fontSize: 18,
+          iconSize: 20,
+        };
+      case "medium":
+      default:
+        return {
+          paddingHorizontal: 16,
+          height: 40,
+          fontSize: 16,
+          iconSize: 20,
+        };
+    }
+  };
 
-  const renderIcon = () => {
-    if (!icon || !iconType) return null;
-    
-    return (
-      <Icon
-        name={icon}
-        type={iconType}
-        size={sizeStyle.iconSize}
-        color={color || variantStyle.text}
-        style={title ? styles[`icon${iconPosition === 'left' ? 'Left' : 'Right'}`] : undefined}
-      />
-    );
+  const sizeStyle = getSizeStyle();
+  const variantStyle = getVariantStyle();
+
+  const buttonStyle: ViewStyle = {
+    ...styles.button,
+    ...variantStyle,
+    paddingHorizontal: sizeStyle.paddingHorizontal,
+    height: sizeStyle.height,
+    opacity: disabled ? 0.6 : 1,
+    ...style,
+  };
+
+  const textStyle = {
+    ...styles.text,
+    color: variant === "outline" ? theme.colors.primary : "#fff",
+    fontSize: sizeStyle.fontSize,
   };
 
   return (
     <Pressable
-      style={buttonStyle}
-      onPress={disabled ? undefined : onPress}
+      style={({ pressed }) => [
+        buttonStyle,
+        pressed && !disabled && styles.pressed,
+      ]}
+      onPress={onPress}
       disabled={disabled}
-      {...props}
+      accessibilityRole="button"
     >
-      {iconPosition === 'left' && renderIcon()}
-      {title && <Text style={textStyle}>{title}</Text>}
-      {iconPosition === 'right' && renderIcon()}
+      {icon && iconType && (
+        <Icon
+          type={iconType}
+          name={icon}
+          size={sizeStyle.iconSize}
+          color={textStyle.color}
+          style={styles.icon}
+        />
+      )}
+      <Text style={textStyle}>{title}</Text>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 25,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 999,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    gap: 8,
   },
   text: {
-    fontFamily: 'Montserrat-Bold',
+    textAlignVertical: "center",
   },
-  iconLeft: {
-    marginRight: 8,
+  icon: {
+    marginRight: 16,
   },
-  iconRight: {
-    marginLeft: 8,
+  pressed: {
+    opacity: 0.8,
   },
 });
 

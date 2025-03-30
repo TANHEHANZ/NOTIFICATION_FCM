@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import messaging from "@react-native-firebase/messaging";
 import { Alert, Platform, PermissionsAndroid } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TOKENFCM } from "../constants/const";
 
 export const useNotifications = () => {
   const [fcmToken, setFcmToken] = useState<string | null>(null);
@@ -27,9 +29,20 @@ export const useNotifications = () => {
   };
 
   const getFCMToken = async () => {
-    const token = await messaging().getToken();
-    setFcmToken(token);
-    return token;
+    try {
+      let token = await AsyncStorage.getItem(TOKENFCM);
+      console.log("Token FCM desde AsyncStorage:", token);
+      if (!token) {
+        token = await messaging().getToken();
+        console.log("Token FCM desde Firebase:", token);
+        await AsyncStorage.setItem(TOKENFCM, token);
+      }
+
+      setFcmToken(token);
+      return token;
+    } catch (error) {
+      console.error("Error obteniendo el token FCM:", error);
+    }
   };
 
   const setupNotifications = async () => {
