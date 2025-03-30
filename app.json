@@ -14,7 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Esta app necesita acceso a la cámara para tomar fotos y videos",
+        "NSMicrophoneUsageDescription": "Esta app necesita acceso al micrófono para grabar audio",
+        "NSPhotoLibraryUsageDescription": "Esta app necesita acceso a tu galería para guardar y seleccionar medios",
+        "NSLocationWhenInUseUsageDescription": "Esta app necesita tu ubicación para proporcionar servicios basados en localización",
+        "NSMotionUsageDescription": "Esta app necesita acceso a los sensores de movimiento para funcionalidades específicas"
+      }
     },
     "plugins": [
       ["@react-native-firebase/app"],
@@ -27,11 +34,36 @@
             "googleServicesFile": "./google-services.json"
           }
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permiso para acceder a la cámara",
+          "microphonePermission": "Permiso para acceder al micrófono"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permiso para acceder a la ubicación en todo momento",
+          "locationAlwaysPermission": "Permiso para acceder a la ubicación en segundo plano",
+          "locationWhenInUsePermission": "Permiso para acceder a la ubicación mientras usas la app"
+        }
       ]
     ],
     "android": {
       "googleServicesFile": "./google-services.json",
-      "package": "com.pruebasmunayki.aplicacion"
+      "package": "com.pruebasmunayki.aplicacion",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
