@@ -21,12 +21,12 @@ interface contactResponse {
 
 declare global {
   interface EndpointMap {
-    "GET /api/conctact": {
+    "GET /v1/api/contact/contact": {
       params: never;
       request: null;
       response: user[];
     };
-    "GET /api/contact_for_user": {
+    "GET /v1/api/contact/contact_for_user": {
       params: never;
       request: null;
       response: contactData;

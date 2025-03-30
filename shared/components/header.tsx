@@ -3,17 +3,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "./styles/global";
 import { router } from "expo-router";
 import { ROUTES } from "../../infraestructure/models/enums/routes.enum";
+import { AUTH_TOKEN } from "../../infraestructure/constants/const";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Header() {
   const handleNotifications = () => {
     router.push(ROUTES.NOTIFICATIONS);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem(AUTH_TOKEN);
     router.push(ROUTES.LOGIN);
-    // Aquí puedes agregar la lógica para cerrar sesión, como limpiar el token de autenticación.
-    // Por ejemplo:
-    // await AsyncStorage.removeItem(AUTH_TOKEN);
   };
 
   return (

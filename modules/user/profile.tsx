@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   profileImage: {
-    width: 60,
-    height: 60,
+    width: 65,
+    height: 65,
     borderRadius: 99,
     marginBottom: 12,
     borderWidth: 2,

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, StyleSheet } from "react-native";
-import { AUTH_TOKEN } from "../../../infraestructure/constants/const";
+import { AUTH_TOKEN, TOKENFCM } from "../../../infraestructure/constants/const";
 import Contactos from "../../../modules/inicio/contactos";
 import { sizes, theme } from "../../../shared/components/styles/global";
 import CardInicio from "../../../modules/inicio/cardInicio";
@@ -8,7 +8,9 @@ import CardInicio from "../../../modules/inicio/cardInicio";
 export default function Inicio() {
   const verificacion = async () => {
     const token = await AsyncStorage.getItem(AUTH_TOKEN);
+    const tokenfCM = await AsyncStorage.getItem(TOKENFCM);
     console.log(token);
+    console.log("FCM:", tokenfCM);
   };
 
   verificacion();

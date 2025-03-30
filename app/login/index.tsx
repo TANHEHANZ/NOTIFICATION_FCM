@@ -24,7 +24,7 @@ export default function Login({ fcmToken }: LoginProps) {
         size="large"
         icon="google"
         iconType="AntDesign"
-        onPress={redirect()}
+        onPress={redirect(fcmToken!)}
       />
     </View>
   );
