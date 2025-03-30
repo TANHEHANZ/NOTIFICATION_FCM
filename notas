@@ -1,0 +1,3 @@
+prmero debemos manejar el build en modo desarrollo y con ello ya tendrias todo 
+npx expo start --dev-client 
+ eas build -p android --profile preview 

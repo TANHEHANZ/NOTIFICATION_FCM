@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "aplicacion",
+    "slug": "aplicacion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "plugins": [
+      ["@react-native-firebase/app"],
+      ["@react-native-firebase/messaging"],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "newArchEnabled": true,
+            "googleServicesFile": "./google-services.json"
+          }
+        }
+      ]
+    ],
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.pruebasmunayki.aplicacion"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1788e726-33f5-411e-a93b-36d880c9b229"
+      }
+    }
+  }
+}
