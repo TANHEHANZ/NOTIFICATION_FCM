@@ -1,5 +1,6 @@
 export enum ROUTES {
   BASE = "/",
+  LOGIN = "/login",
   BASE_PUBLIC = "/public",
   HOME = BASE_PUBLIC + "/inicio",
   ALERT = BASE_PUBLIC + "/alertas",
@@ -7,4 +8,5 @@ export enum ROUTES {
   CONFIGURATION = BASE_PUBLIC + "/configuracion",
   PROFILE = BASE_PUBLIC + "/perfil",
   SETTINGS = BASE_PUBLIC + "/configuracion",
+  NOTIFICATIONS = BASE_PUBLIC + "/notificaciones",
 }

@@ -1,8 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { AUTH_TOKEN } from "../../../infraestructure/constants/const";
-import { contact } from "../../../infraestructure/models/globals/contactos";
-import Profile from "../../../modules/user/profile";
+import Contactos from "../../../modules/inicio/contactos";
+import { sizes, theme } from "../../../shared/components/styles/global";
+import CardInicio from "../../../modules/inicio/cardInicio";
 
 export default function Inicio() {
   const verificacion = async () => {
@@ -12,58 +13,34 @@ export default function Inicio() {
 
   verificacion();
 
-  const contactos: contact[] = [
-    {
-      email: "contacto1@example.com",
-      name: "Juan Pérez",
-      photo:
-        "https://lh3.googleusercontent.com/a/ACg8ocJSj46AYEEZDjM6q2d5fKVtxu-NxdF1DGV06oD-wjsqKbsQpWI=s96-c",
-      userId: "1",
-    },
-    {
-      email: "contacto2@example.com",
-      name: "María García",
-      photo:
-        "https://lh3.googleusercontent.com/a/ACg8ocJSj46AYEEZDjM6q2d5fKVtxu-NxdF1DGV06oD-wjsqKbsQpWI=s96-c",
-      userId: "2",
-    },
-    {
-      email: "contacto2@example.com",
-      name: "María García",
-      photo:
-        "https://lh3.googleusercontent.com/a/ACg8ocJSj46AYEEZDjM6q2d5fKVtxu-NxdF1DGV06oD-wjsqKbsQpWI=s96-c",
-      userId: "3",
-    },
-    {
-      email: "contacto2@example.com",
-      name: "María García",
-      photo:
-        "https://lh3.googleusercontent.com/a/ACg8ocJSj46AYEEZDjM6q2d5fKVtxu-NxdF1DGV06oD-wjsqKbsQpWI=s96-c",
-      userId: "4",
-    },
-    {
-      email: "contacto2@example.com",
-      name: "María García",
-      photo:
-        "https://lh3.googleusercontent.com/a/ACg8ocJSj46AYEEZDjM6q2d5fKVtxu-NxdF1DGV06oD-wjsqKbsQpWI=s96-c",
-      userId: "5",
-    },
-  ];
-
   return (
     <View style={styles.container}>
-      <FlatList
-        data={contactos}
-        renderItem={({ item }) => (
-          <View style={{ flexDirection: "row", gap: 5 }}>
-            <Profile contacto={item} />
-          </View>
-        )}
-        keyExtractor={(item) => item.userId}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.listContent}
-      />
+      <View style={styles.gridContainer}>
+        <View
+          style={{
+            backgroundColor: theme.colors.primary,
+            width: sizes.screenWidth - 40,
+            height: 200,
+            borderRadius: 12,
+            justifyContent: "center",
+            alignItems: "center",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+          }}
+        ></View>
+        <CardInicio
+          title="notificaciones"
+          icon="notifications-outline"
+          value={12}
+        />
+        <CardInicio
+          title="Inoformaciones"
+          icon="information-circle-sharp"
+          value={12}
+        />
+      </View>
+      <Contactos />
     </View>
   );
 }
@@ -71,8 +48,14 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  listContent: {
-    paddingBottom: 16,
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: sizes.screenWidth - 40,
+    gap: 16,
+    marginBottom: 20,
   },
 });

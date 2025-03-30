@@ -15,6 +15,7 @@ interface AlertTapProps {
   rotation?: number;
   position?: "left" | "right" | "center";
   offsetY?: number;
+  absolute?: boolean;
 }
 
 export const AlertTap: React.FC<AlertTapProps> = ({
@@ -27,26 +28,24 @@ export const AlertTap: React.FC<AlertTapProps> = ({
   position = "center",
   offsetY = 0,
   style,
+  absolute = true,
 }) => {
-  // Estilos dinámicos con tipos explícitos
   const dynamicStyles: ViewStyle = {
     backgroundColor: color,
     transform: [{ rotate: `${rotation}deg` }, { translateY: offsetY }],
+    position: absolute ? "absolute" : "relative",
   };
 
-  // Añadir estilos de posición según la prop
-  if (position === "left") {
-    dynamicStyles.left = 20;
-    dynamicStyles.right = undefined;
-    dynamicStyles.alignSelf = undefined;
-  } else if (position === "right") {
-    dynamicStyles.right = 20;
-    dynamicStyles.left = undefined;
-    dynamicStyles.alignSelf = undefined;
-  } else {
-    dynamicStyles.alignSelf = "center" as const;
-    dynamicStyles.left = undefined;
-    dynamicStyles.right = undefined;
+  if (absolute) {
+    if (position === "left") {
+      dynamicStyles.left = 20;
+      dynamicStyles.right = undefined;
+    } else if (position === "right") {
+      dynamicStyles.right = 20;
+      dynamicStyles.left = undefined;
+    } else {
+      dynamicStyles.alignSelf = "center";
+    }
   }
 
   return (
@@ -78,7 +77,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
     flexDirection: "row",
-    position: "absolute",
   },
   content: {
     flexDirection: "row",

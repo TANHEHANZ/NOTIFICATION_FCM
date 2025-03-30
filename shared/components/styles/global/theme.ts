@@ -12,5 +12,6 @@ export const theme = {
     lila: "#8673F8",
     yelow: "#D4FB07",
     basico: "#F4F6F8",
+    basico2: "#F4F4F6",
   },
 };
