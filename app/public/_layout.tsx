@@ -8,6 +8,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ModalProvider } from "../../infraestructure/contexts/ModalContext";
 export default function RootLayout() {
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
@@ -25,12 +26,14 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-        <StatusBar style="light" backgroundColor="#fff" translucent={false} />
-        <Header />
-        <Slot />
-        <Nav />
-      </View>
+      <ModalProvider>
+        <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+          <StatusBar style="light" backgroundColor="#fff" translucent={false} />
+          <Header />
+          <Slot />
+          <Nav />
+        </View>
+      </ModalProvider>
     </QueryClientProvider>
   );
 }

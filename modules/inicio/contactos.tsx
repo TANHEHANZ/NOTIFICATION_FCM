@@ -7,7 +7,7 @@ import useFetch from "../../infraestructure/lib/useFetch/useFetch";
 
 export default function Contactos() {
   const { fetchData, postData } = useFetch();
-  const { data } = fetchData("GET /v1/api/contact/contact");
+  const { data } = fetchData("GET /v1/api/contact");
   console.log("contactos", data);
 
   return (
@@ -28,7 +28,7 @@ export default function Contactos() {
         />
         <FlatList
           data={data}
-          renderItem={({ item }) => <Profile contacto={item} />}
+          renderItem={({ item }) => <Profile contacto={item.contactUser} />}
           keyExtractor={(item) => item.userId}
           horizontal={true}
           showsHorizontalScrollIndicator={false}

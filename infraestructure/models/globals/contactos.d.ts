@@ -7,6 +7,22 @@ export interface contact {
   photo: string;
   userId: string;
 }
+export interface Contactos {
+  id: string;
+  userId: string;
+  contactUserId: string;
+  nick: string | null; // `nick` es opcional (puede ser null)
+  createdAt: string | Date; // Puedes usar `Date` si haces parsing
+  updatedAt: string | Date;
+  contactUser: UserByContact; // Relación con el usuario
+}
+export interface UserByContact {
+  id: string;
+  email: string;
+  name: string;
+  photo: string;
+}
+
 export interface contactData {
   providerId: string;
   contact: contact[];
@@ -21,10 +37,10 @@ interface contactResponse {
 
 declare global {
   interface EndpointMap {
-    "GET /v1/api/contact/contact": {
+    "GET /v1/api/contact": {
       params: never;
       request: null;
-      response: user[];
+      response: Contactos[];
     };
     "GET /v1/api/contact/contact_for_user": {
       params: never;
@@ -32,7 +48,7 @@ declare global {
       response: contactData;
     };
 
-    "POST /api/contact": {
+    "POST /v1/api/contact": {
       params: never;
       request: ContactDTO;
       response: contactResponse;

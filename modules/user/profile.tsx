@@ -1,8 +1,11 @@
 import { Text, View, Image, StyleSheet } from "react-native";
-import { contact } from "../../infraestructure/models/globals/contactos";
+import {
+  contact,
+  UserByContact,
+} from "../../infraestructure/models/globals/contactos";
 import { theme } from "../../shared/components/styles/global";
 
-export default function Profile({ contacto }: { contacto: contact }) {
+export default function Profile({ contacto }: { contacto: UserByContact }) {
   const [firstWord, secondWord] = contacto.name.split(" ");
 
   return (

@@ -13,5 +13,6 @@ export const theme = {
     yelow: "#D4FB07",
     basico: "#F4F6F8",
     basico2: "#F4F4F6",
+    error: "red",
   },
 };

@@ -3,6 +3,7 @@ import { sizes, theme } from "./styles/global";
 import Icon from "../ui/icon";
 import { router, usePathname } from "expo-router";
 import { ROUTES } from "../../infraestructure/models/enums/routes.enum";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -10,25 +11,24 @@ export default function Nav() {
     {
       name: "Inicio",
       route: ROUTES.HOME,
-      icon: { name: "home", type: "Feather" },
+      icon: { name: "home-outline", type: "Ionicons" },
     },
     {
       name: "Alertas",
       route: ROUTES.ALERT,
-      icon: { name: "bell", type: "Feather" },
+      icon: { name: "radio-button-on", type: "Ionicons" },
     },
     {
       name: "Contactos",
       route: ROUTES.CONTACT,
-      icon: { name: "users", type: "Feather" },
+      icon: { name: "people-outline", type: "Ionicons" },
     },
     {
       name: "Configuración",
       route: ROUTES.SETTINGS,
-      icon: { name: "settings", type: "Feather" },
+      icon: { name: "settings-outline", type: "Ionicons" },
     },
   ];
-
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
@@ -42,9 +42,8 @@ export default function Nav() {
             ]}
           >
             <View style={[styles.iconContainer]}>
-              <Icon
-                type={item.icon.type as any}
-                name={item.icon.name}
+              <Ionicons
+                name={item.icon.name as any}
                 size={24}
                 color={
                   pathname === item.route
