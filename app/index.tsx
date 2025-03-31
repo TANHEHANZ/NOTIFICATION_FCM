@@ -10,7 +10,6 @@ export default function HomeScreen() {
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { permissionGranted, fcmToken } = useNotifications();
-
   useEffect(() => {
     if (isAuthenticated) {
       navigation.replace("public", { screen: "inicio" });

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   importantCard: {
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.secondary,
   },
 
   fullWidth: {

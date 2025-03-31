@@ -33,7 +33,7 @@ export default function CardInicio({
         onPress={onPress}
         style={[styles.button, important && styles.importantButton]}
       >
-        <Text style={styles.buttonText}>Ver {title}</Text>
+        <Text style={styles.buttonText}> Ver {title.split(" ")[0]} </Text>
       </Pressable>
     </Card>
   );
