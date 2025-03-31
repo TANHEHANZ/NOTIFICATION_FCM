@@ -42,7 +42,7 @@ export default function Inicio() {
           value={12}
         />
       </View>
-      {/* <Contactos /> */}
+      <Contactos />
     </View>
   );
 }
