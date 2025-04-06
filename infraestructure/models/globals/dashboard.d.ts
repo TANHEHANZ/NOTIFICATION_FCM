@@ -57,13 +57,9 @@ declare global {
     "GET /v1/api/dashboard": {
       params: never;
       request: null;
-      response: UserData;
+      response: any;
     };
-    "GET /v1/api/dashboard/admin": {
-      params: never;
-      request: null;
-      response: AdminDashboardResponse;
-    };
+
     "GET /v1/api/dashboard/flayer": {
       params: never;
       request: null;

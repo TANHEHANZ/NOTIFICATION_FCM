@@ -18,9 +18,6 @@ export default function Header({ role }: { role: string }) {
     await AsyncStorage.removeItem(AUTH_TOKEN);
     router.push(ROUTES.LOGIN);
   };
-  const handlemap = () => {
-    router.push(PRIVATE_ROUTES.MAPS);
-  };
 
   return (
     <View style={styles.container}>
@@ -32,9 +29,7 @@ export default function Header({ role }: { role: string }) {
         >
           <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handlemap} style={styles.iconButton}>
-          <Ionicons name="map" size={24} color="black" />
-        </TouchableOpacity>
+
         <TouchableOpacity onPress={handleLogout} style={styles.iconButton}>
           <Ionicons name="log-out-outline" size={24} color="black" />
         </TouchableOpacity>

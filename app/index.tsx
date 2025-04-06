@@ -24,7 +24,7 @@ export default function HomeScreen() {
       if (isAuthenticated && !redirected) {
         const role = await decodeTokenAndGetRole();
         if (role === "ADMINISTRADOR") {
-          router.replace(PRIVATE_ROUTES.ALERTS);
+          router.replace(PRIVATE_ROUTES.HOME);
         } else {
           router.replace(ROUTES.HOME);
         }

@@ -34,19 +34,24 @@ export default function Nav({ role }: { role: string }) {
 
   const privateNavItems = [
     {
+      name: "inicio",
+      route: PRIVATE_ROUTES.HOME,
+      icon: { name: "home-outline", type: "Ionicons" },
+    },
+    {
       name: "Alertas",
       route: PRIVATE_ROUTES.ALERTS,
       icon: { name: "radio-button-on", type: "Ionicons" },
     },
     {
-      name: "Mapas",
-      route: PRIVATE_ROUTES.MAPS,
-      icon: { name: "map-outline", type: "Ionicons" },
+      name: "Notificar",
+      route: PRIVATE_ROUTES.NOTIFICAR,
+      icon: { name: "notifications-outline", type: "Ionicons" },
     },
     {
-      name: "Perfil",
-      route: PRIVATE_ROUTES.PROFILE,
-      icon: { name: "person-outline", type: "Ionicons" },
+      name: "Configuración",
+      route: PRIVATE_ROUTES.SETTINGS,
+      icon: { name: "settings-outline", type: "Ionicons" },
     },
   ];
   const navItems = role === "ADMINISTRADOR" ? privateNavItems : publicNavItems;

@@ -13,45 +13,6 @@ export default function Inicio() {
   const alertas = data?.alertas?.generadas || 0;
   const contactos = data?.contactos?.total || 0;
   const informaciones = data?.informaciones?.total || 0;
-  // const [token, setToken] = useState<string | null>(null);
-  // useEffect(() => {
-  //   const connectSocket = async () => {
-  //     try {
-  //       const tokenAuth = await authService.getToken();
-  //       setToken(tokenAuth);
-  //       setConnectionStatus("connecting");
-  //       if (!token) {
-  //         console.log("no hay token de conexion");
-  //         return;
-  //       }
-  //       await socketClient.connect(token);
-  //       setConnectionStatus("connected");
-  //       socketClient.getSocket().on("test_response", (response) => {
-  //         console.log("Respuesta directa del servidor:", response);
-  //       });
-  //       // Configurar listeners para notificaciones
-  //       socketClient.onNotification((data: any) => {
-  //         console.log("Nueva notificación personal:", data);
-  //         setNotifications((prev) => prev + 1);
-  //       });
-
-  //       socketClient.onGlobalNotification((data: any) => {
-  //         console.log("Mensaje global", data);
-  //         // Aquí puedes manejar notificaciones globales si las necesitas
-  //       });
-  //     } catch (error) {
-  //       console.error("Error de conexión:", error);
-  //       setConnectionStatus("error");
-  //     }
-  //   };
-
-  //   connectSocket();
-
-  //   // Limpieza al desmontar el componente
-  //   return () => {
-  //     socketClient.disconnect();
-  //   };
-  // }, [token]);
 
   return (
     <View style={styles.container}>

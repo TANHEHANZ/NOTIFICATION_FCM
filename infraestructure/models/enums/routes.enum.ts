@@ -12,7 +12,9 @@ export enum ROUTES {
 }
 export enum PRIVATE_ROUTES {
   BASE = "/private",
+  HOME = BASE + "/inicio",
+  NOTIFICAR = BASE + "/notificar",
   ALERTS = BASE + "/alertas",
-  MAPS = BASE + "/mapas",
   PROFILE = BASE + "/perfil",
+  SETTINGS = BASE + "/configuraciones",
 }
