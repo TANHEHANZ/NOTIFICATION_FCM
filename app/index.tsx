@@ -1,20 +1,38 @@
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../infraestructure/hooks/useAuth";
 import { useNotifications } from "../infraestructure/hooks/useNotifications";
 import Login from "./login";
 import { HomeScreenNavigationProp } from "../infraestructure/models/types";
+import { decodeTokenAndGetRole } from "../infraestructure/helpers/tokenAuthDecode";
+import { router } from "expo-router";
+import {
+  PRIVATE_ROUTES,
+  ROUTES,
+} from "../infraestructure/models/enums/routes.enum";
 
 export default function HomeScreen() {
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { permissionGranted, fcmToken } = useNotifications();
+
+  const [redirected, setRedirected] = useState(false);
+
   useEffect(() => {
-    if (isAuthenticated) {
-      navigation.replace("public", { screen: "inicio" });
-    }
-  }, [isAuthenticated, navigation]);
+    const handleRedirection = async () => {
+      if (isAuthenticated && !redirected) {
+        const role = await decodeTokenAndGetRole();
+        if (role === "ADMINISTRADOR") {
+          router.replace(PRIVATE_ROUTES.ALERTS);
+        } else {
+          router.replace(ROUTES.HOME);
+        }
+      }
+    };
+
+    handleRedirection();
+  }, [isAuthenticated, redirected, navigation]);
 
   if (isAuthLoading) {
     return (
@@ -23,6 +41,7 @@ export default function HomeScreen() {
       </View>
     );
   }
+
   if (!permissionGranted) {
     return (
       <View style={styles.container}>

@@ -5,9 +5,7 @@ import { AUTH_TOKEN, USER_ROL } from "../constants/const";
 import { ROUTES } from "../models/enums/routes.enum";
 import { router } from "expo-router";
 import { decodeToken } from "../helpers/jwt";
-const decoded = {
-  role: "USER",
-};
+
 const useLinkingListener = () => {
   useEffect(() => {
     const subscription = Linking.addEventListener(

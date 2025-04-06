@@ -4,6 +4,7 @@ import { sizes, theme } from "../../../shared/components/styles/global";
 import CardInicio from "../../../modules/inicio/cardInicio";
 import useFetch from "../../../infraestructure/lib/useFetch/useFetch";
 import Flayer from "../../../modules/inicio/flayer";
+import { decodeTokenAndGetRole } from "../../../infraestructure/helpers/tokenAuthDecode";
 
 export default function Inicio() {
   const { fetchData } = useFetch();

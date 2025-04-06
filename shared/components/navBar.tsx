@@ -1,13 +1,15 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { sizes, theme } from "./styles/global";
-import Icon from "../ui/icon";
-import { router, usePathname } from "expo-router";
-import { ROUTES } from "../../infraestructure/models/enums/routes.enum";
 import { Ionicons } from "@expo/vector-icons";
+import { router, usePathname } from "expo-router";
+import {
+  ROUTES,
+  PRIVATE_ROUTES,
+} from "../../infraestructure/models/enums/routes.enum";
 
-export default function Nav() {
+export default function Nav({ role }: { role: string }) {
   const pathname = usePathname();
-  const navItems = [
+  const publicNavItems = [
     {
       name: "Inicio",
       route: ROUTES.HOME,
@@ -29,6 +31,26 @@ export default function Nav() {
       icon: { name: "settings-outline", type: "Ionicons" },
     },
   ];
+
+  const privateNavItems = [
+    {
+      name: "Alertas",
+      route: PRIVATE_ROUTES.ALERTS,
+      icon: { name: "radio-button-on", type: "Ionicons" },
+    },
+    {
+      name: "Mapas",
+      route: PRIVATE_ROUTES.MAPS,
+      icon: { name: "map-outline", type: "Ionicons" },
+    },
+    {
+      name: "Perfil",
+      route: PRIVATE_ROUTES.PROFILE,
+      icon: { name: "person-outline", type: "Ionicons" },
+    },
+  ];
+  const navItems = role === "ADMINISTRADOR" ? privateNavItems : publicNavItems;
+
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
@@ -41,7 +63,7 @@ export default function Nav() {
               pathname === item.route && styles.activeItem,
             ]}
           >
-            <View style={[styles.iconContainer]}>
+            <View style={styles.iconContainer}>
               <Ionicons
                 name={item.icon.name as any}
                 size={24}
@@ -84,14 +106,9 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 20,
   },
-  alertItem: {
-    position: "relative",
-    top: -15,
-  },
   activeItem: {
     backgroundColor: theme.colors.primary + "20",
   },
-
   iconContainer: {
     padding: 8,
   },

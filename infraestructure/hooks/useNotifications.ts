@@ -13,9 +13,14 @@ export const useNotifications = () => {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
       );
+      console.log("Android permission granted:", granted);
       setPermissionGranted(granted === PermissionsAndroid.RESULTS.GRANTED);
       return granted === PermissionsAndroid.RESULTS.GRANTED;
     }
+    console.log(
+      "Android permission not required for version:",
+      Platform.Version
+    );
     return true;
   };
 
@@ -24,8 +29,25 @@ export const useNotifications = () => {
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    console.log("iOS permission status:", authStatus, enabled);
     setPermissionGranted(enabled);
     return enabled;
+  };
+
+  const setupNotifications = async () => {
+    let hasPermission = false;
+
+    if (Platform.OS === "android") {
+      hasPermission = await requestAndroidPermission();
+    } else {
+      hasPermission = await requestIOSPermission();
+    }
+
+    if (hasPermission) {
+      await getFCMToken();
+    } else {
+      console.log("Permission not granted for notifications.");
+    }
   };
 
   const getFCMToken = async () => {
@@ -42,20 +64,6 @@ export const useNotifications = () => {
       return token;
     } catch (error) {
       console.error("Error obteniendo el token FCM:", error);
-    }
-  };
-
-  const setupNotifications = async () => {
-    let hasPermission = false;
-
-    if (Platform.OS === "android") {
-      hasPermission = await requestAndroidPermission();
-    } else {
-      hasPermission = await requestIOSPermission();
-    }
-
-    if (hasPermission) {
-      await getFCMToken();
     }
   };
 

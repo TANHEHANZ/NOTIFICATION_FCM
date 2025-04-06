@@ -9,7 +9,7 @@ import {
 import { AUTH_TOKEN } from "../../infraestructure/constants/const";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Header() {
+export default function Header({ role }: { role: string }) {
   const handleNotifications = () => {
     router.push(ROUTES.NOTIFICATIONS);
   };
