@@ -2,7 +2,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "./styles/global";
 import { router } from "expo-router";
-import { ROUTES } from "../../infraestructure/models/enums/routes.enum";
+import {
+  PRIVATE_ROUTES,
+  ROUTES,
+} from "../../infraestructure/models/enums/routes.enum";
 import { AUTH_TOKEN } from "../../infraestructure/constants/const";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -15,6 +18,9 @@ export default function Header() {
     await AsyncStorage.removeItem(AUTH_TOKEN);
     router.push(ROUTES.LOGIN);
   };
+  const handlemap = () => {
+    router.push(PRIVATE_ROUTES.MAPS);
+  };
 
   return (
     <View style={styles.container}>
@@ -26,7 +32,9 @@ export default function Header() {
         >
           <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
-
+        <TouchableOpacity onPress={handlemap} style={styles.iconButton}>
+          <Ionicons name="map" size={24} color="black" />
+        </TouchableOpacity>
         <TouchableOpacity onPress={handleLogout} style={styles.iconButton}>
           <Ionicons name="log-out-outline" size={24} color="black" />
         </TouchableOpacity>

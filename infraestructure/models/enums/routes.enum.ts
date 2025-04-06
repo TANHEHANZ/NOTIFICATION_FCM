@@ -10,3 +10,8 @@ export enum ROUTES {
   SETTINGS = BASE_PUBLIC + "/configuracion",
   NOTIFICATIONS = BASE_PUBLIC + "/notificaciones",
 }
+
+export enum PRIVATE_ROUTES {
+  BASE = "/private",
+  MAPS = BASE + "/mapas",
+}

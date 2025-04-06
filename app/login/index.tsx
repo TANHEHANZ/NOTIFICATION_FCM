@@ -5,7 +5,6 @@ import LoginPipeline from "../../modules/login/pipeline";
 import { StatusBar } from "expo-status-bar";
 import useLinkingListener from "../../infraestructure/hooks/useLinkingListener";
 import { redirect } from "../../infraestructure/helpers/redirect";
-import { GradientBackground } from "../../shared";
 interface LoginProps {
   fcmToken: string | null;
 }
@@ -15,7 +14,6 @@ export default function Login({ fcmToken }: LoginProps) {
 
   return (
     <View style={loginStyles.container}>
-      {/* <GradientBackground /> */}
       <StatusBar style="light" backgroundColor="#000000" translucent={false} />
       <LoginPipeline />
       <ButtonPrimary

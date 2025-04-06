@@ -22,15 +22,15 @@ export default function Flayer() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!data) {
-        const nextIndex = (currentIndex + 1) % data!.length;
+      if (data) {
+        const nextIndex = (currentIndex + 1) % data.length;
         setCurrentIndex(nextIndex);
         flatListRef.current?.scrollToIndex({
           index: nextIndex,
           animated: true,
         });
       }
-    }, 8000); // Cambia cada 3 segundos
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [currentIndex, data]);

@@ -24,8 +24,12 @@
       }
     },
     "plugins": [
-      ["@react-native-firebase/app"],
-      ["@react-native-firebase/messaging"],
+      [
+        "@react-native-firebase/app"
+      ],
+      [
+        "@react-native-firebase/messaging"
+      ],
       [
         "expo-build-properties",
         {
@@ -49,7 +53,8 @@
           "locationAlwaysPermission": "Permiso para acceder a la ubicación en segundo plano",
           "locationWhenInUsePermission": "Permiso para acceder a la ubicación mientras usas la app"
         }
-      ]
+      ],
+      "expo-router"
     ],
     "android": {
       "googleServicesFile": "./google-services.json",
