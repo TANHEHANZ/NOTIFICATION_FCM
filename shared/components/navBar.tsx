@@ -44,11 +44,6 @@ export default function Nav({ role }: { role: string }) {
       icon: { name: "radio-button-on", type: "Ionicons" },
     },
     {
-      name: "Notificar",
-      route: PRIVATE_ROUTES.NOTIFICAR,
-      icon: { name: "notifications-outline", type: "Ionicons" },
-    },
-    {
       name: "Configuración",
       route: PRIVATE_ROUTES.SETTINGS,
       icon: { name: "settings-outline", type: "Ionicons" },

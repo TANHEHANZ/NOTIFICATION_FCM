@@ -11,13 +11,11 @@ export default function InicioAdmin() {
   const alertas = data?.alertas?.total || 0;
   const informaciones = data?.informaciones?.total || 0;
   const seguimientos = data?.seguimientos?.total || 0;
-  const { activos, alertados, inactivos, eliminados } = data?.usuarios || {};
-
+  const { activos, inactivos, eliminados } = data?.usuarios || {};
   return (
     <View style={styles.container}>
-      {/* Encabezado de estadísticas principales */}
       <View style={styles.mainStatsContainer}>
-        <Text style={styles.sectionTitle}>Resumen de Usuarios</Text>
+        <Text style={styles.sectionTitleContainer}>Resumen de Usuarios</Text>
         <View style={styles.statsRow}>
           <View style={styles.statItem}>
             <Text style={[styles.statValue, styles.activeStat]}>{activos}</Text>
@@ -35,16 +33,9 @@ export default function InicioAdmin() {
             </Text>
             <Text style={styles.statLabel}>ELIMINADOS</Text>
           </View>
-          <View style={styles.statItem}>
-            <Text style={[styles.statValue, styles.alertedStat]}>
-              {alertados}
-            </Text>
-            <Text style={styles.statLabel}>ALERTADOS</Text>
-          </View>
         </View>
       </View>
 
-      {/* Tarjetas de información */}
       <Text style={styles.sectionTitle}>Métricas Principales</Text>
       <View style={styles.gridContainer}>
         <CardInicio
@@ -64,36 +55,6 @@ export default function InicioAdmin() {
           value={seguimientos}
         />
       </View>
-
-      <Text style={styles.sectionTitle}>Detalle de Usuarios</Text>
-      <View style={styles.gridContainer}>
-        <CardInicio
-          title="Usuarios Totales"
-          icon="people-outline"
-          value={activos + inactivos + eliminados + alertados}
-        />
-        <CardInicio
-          title="Usuarios Activos"
-          icon="checkmark-circle-outline"
-          value={activos}
-        />
-        <CardInicio
-          title="Usuarios Inactivos"
-          icon="close-circle-outline"
-          value={inactivos}
-        />
-        <CardInicio
-          title="Usuarios Alertados"
-          icon="alert-circle-outline"
-          value={alertados}
-          important={true}
-        />
-        <CardInicio
-          title="Usuarios Eliminados"
-          icon="trash-bin-outline"
-          value={eliminados}
-        />
-      </View>
     </View>
   );
 }
@@ -105,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   mainStatsContainer: {
-    backgroundColor: theme.colors.card,
+    backgroundColor: theme.colors.text,
     borderRadius: 12,
     padding: 20,
     marginBottom: 20,
@@ -125,6 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   statValue: {
+    color: "#fff",
     fontSize: 32,
     fontWeight: "bold",
     marginBottom: 5,
@@ -147,9 +109,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "500",
   },
+  sectionTitleContainer: {
+    fontSize: sizes.fontSizeLarge,
+    color: "#fff",
+    marginBottom: 15,
+  },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
     color: theme.colors.text,
     marginBottom: 15,
     marginTop: 10,

@@ -17,4 +17,5 @@ export enum PRIVATE_ROUTES {
   ALERTS = BASE + "/alertas",
   PROFILE = BASE + "/perfil",
   SETTINGS = BASE + "/configuraciones",
+  NOTIFICATIONS = BASE + "/notificaciones",
 }

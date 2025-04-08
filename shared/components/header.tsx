@@ -8,10 +8,12 @@ import {
 } from "../../infraestructure/models/enums/routes.enum";
 import { AUTH_TOKEN } from "../../infraestructure/constants/const";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ROLE_ROUTES } from "../../infraestructure/helpers/roleScreens";
 
 export default function Header({ role }: { role: string }) {
   const handleNotifications = () => {
-    router.push(ROUTES.NOTIFICATIONS);
+    const route = ROLE_ROUTES[role as keyof typeof ROLE_ROUTES];
+    if (route) router.push(route);
   };
 
   const handleLogout = async () => {

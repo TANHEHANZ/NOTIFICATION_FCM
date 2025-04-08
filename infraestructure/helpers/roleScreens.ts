@@ -1,0 +1,6 @@
+import { PRIVATE_ROUTES, ROUTES } from "../models/enums/routes.enum";
+
+export const ROLE_ROUTES = {
+  ADMINISTRADOR: PRIVATE_ROUTES.NOTIFICATIONS,
+  USUARIO: ROUTES.NOTIFICATIONS,
+};
