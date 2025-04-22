@@ -25,11 +25,11 @@ export default function Nav({ role }: { role: string }) {
       route: ROUTES.CONTACT,
       icon: { name: "people-outline", type: "Ionicons" },
     },
-    {
-      name: "Configuración",
-      route: ROUTES.SETTINGS,
-      icon: { name: "settings-outline", type: "Ionicons" },
-    },
+    // {
+    //   name: "Configuración",
+    //   route: ROUTES.SETTINGS,
+    //   icon: { name: "settings-outline", type: "Ionicons" },
+    // },
   ];
 
   const privateNavItems = [
@@ -43,11 +43,11 @@ export default function Nav({ role }: { role: string }) {
       route: PRIVATE_ROUTES.ALERTS,
       icon: { name: "radio-button-on", type: "Ionicons" },
     },
-    {
-      name: "Configuración",
-      route: PRIVATE_ROUTES.SETTINGS,
-      icon: { name: "settings-outline", type: "Ionicons" },
-    },
+    // {
+    //   name: "Configuración",
+    //   route: PRIVATE_ROUTES.SETTINGS,
+    //   icon: { name: "settings-outline", type: "Ionicons" },
+    // },
   ];
   const navItems = role === "ADMINISTRADOR" ? privateNavItems : publicNavItems;
 

@@ -22,7 +22,7 @@ export default function Flayer() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (data) {
+      if (data && data.length > 0) {
         const nextIndex = (currentIndex + 1) % data.length;
         setCurrentIndex(nextIndex);
         flatListRef.current?.scrollToIndex({
@@ -34,6 +34,13 @@ export default function Flayer() {
 
     return () => clearInterval(interval);
   }, [currentIndex, data]);
+  if (!data || data.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No se publicaron recursos</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -60,6 +67,18 @@ export default function Flayer() {
 }
 
 const styles = StyleSheet.create({
+  emptyContainer: {
+    width: sizes.screenWidth - 40,
+    height: sizes.screenHeight / 3,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 12,
+    backgroundColor: "#f0f0f0",
+  },
+  emptyText: {
+    fontSize: 16,
+    color: "#888",
+  },
   container: {
     width: sizes.screenWidth - 40,
     height: sizes.screenHeight / 3,

@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Linking } from "react-native";
 import { sizes, theme } from "../../../shared/components/styles/global";
 import CardInicio from "../../../modules/inicio/cardInicio";
 import useFetch from "../../../infraestructure/lib/useFetch/useFetch";
 import Flayer from "../../../modules/inicio/flayer";
 import { decodeTokenAndGetRole } from "../../../infraestructure/helpers/tokenAuthDecode";
+import { router } from "expo-router";
 
 export default function Inicio() {
   const { fetchData } = useFetch();
@@ -14,6 +15,10 @@ export default function Inicio() {
   const contactos = data?.contactos?.total || 0;
   const informaciones = data?.informaciones?.total || 0;
 
+  const goToNoticias = () => Linking.openURL("https://munayki.cochabamba.bo/");
+  const goToAlertas = () => router.push("/public/alertas/misAlertas");
+  const goToContactos = () => router.push("/public/contactos");
+
   return (
     <View style={styles.container}>
       <View style={styles.gridContainer}>
@@ -22,17 +27,20 @@ export default function Inicio() {
           title="Noticias Publicadas"
           icon="document-text-outline"
           value={informaciones}
+          onPress={goToNoticias}
         />
         <CardInicio
           title="Alertas Generadas"
           icon="alert-circle-outline"
           value={alertas}
+          onPress={goToAlertas}
         />
         <CardInicio
           title="Contactos Registrados"
           icon="people-outline"
           value={contactos}
           important={true}
+          onPress={goToContactos}
         />
       </View>
     </View>

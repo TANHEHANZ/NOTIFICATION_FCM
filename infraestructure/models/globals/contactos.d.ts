@@ -53,10 +53,11 @@ declare global {
       request: ContactDTO;
       response: contactResponse;
     };
-    "GET /api/conctact/:id": {
-      params: { id: string };
+
+    "GET /v1/api/contact/byuser": {
+      params: { contactId: string };
       request: null;
-      response: user;
+      response: any;
     };
     "PUT /api/conctact/:id": {
       params: { id: string };

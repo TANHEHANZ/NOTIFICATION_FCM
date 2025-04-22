@@ -9,6 +9,7 @@ export const handleResponse = async <T>(
   onUnauthorized: () => void
 ): Promise<T> => {
   if (!response.ok) {
+    console.log("Error en la respuesta:", response.status, response);
     let msg = "Error del servidor";
     if (response.status === 401) {
       onUnauthorized();

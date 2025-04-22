@@ -9,8 +9,13 @@ import {
 import { AUTH_TOKEN } from "../../infraestructure/constants/const";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ROLE_ROUTES } from "../../infraestructure/helpers/roleScreens";
+import useFetch from "../../infraestructure/lib/useFetch/useFetch";
 
 export default function Header({ role }: { role: string }) {
+  const { fetchData } = useFetch();
+
+  const { data } = fetchData(`GET /v1/api/user/username`, {});
+  console.log("Datos del usuario:", data);
   const handleNotifications = () => {
     const route = ROLE_ROUTES[role as keyof typeof ROLE_ROUTES];
     if (route) router.push(route);
@@ -23,14 +28,18 @@ export default function Header({ role }: { role: string }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.userName}>Hola, Usuario!</Text>
+      <Text style={styles.userName}>
+        <Ionicons name="person-circle-outline" size={18} color="black" />
+
+        {data && data.name}
+      </Text>
       <View style={styles.iconsContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={handleNotifications}
           style={styles.iconButton}
         >
           <Ionicons name="notifications-outline" size={24} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={handleLogout} style={styles.iconButton}>
           <Ionicons name="log-out-outline" size={24} color="black" />
@@ -49,7 +58,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   userName: {
-    fontSize: 18,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 16,
+    gap: 8,
     fontWeight: "bold",
   },
   iconsContainer: {

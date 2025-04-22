@@ -56,10 +56,24 @@ declare global {
     };
   }
   interface EndpointMap {
+    "GET /v1/api/alert/user": {
+      params: never;
+      request: null;
+      response: AlertAll[];
+    };
+  }
+  interface EndpointMap {
     "GET /v1/api/alert/byFind": {
       params: { id: string };
       request: null;
       response: AlertAll;
+    };
+  }
+  interface EndpointMap {
+    "GET /v1/api/alert/myAlert": {
+      params: never;
+      request: null;
+      response: AlertAll[];
     };
   }
 }

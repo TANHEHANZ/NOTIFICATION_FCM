@@ -2,13 +2,17 @@
 import { FlatList, StyleSheet } from "react-native";
 import { CardContact } from "./CardContact";
 import useFetch from "../../infraestructure/lib/useFetch/useFetch";
+import { router } from "expo-router";
 
 export default function ListContact() {
   const { fetchData, postData } = useFetch();
 
-  const { data, refetch } = fetchData("GET /v1/api/contact");
+  const { data } = fetchData("GET /v1/api/contact");
   console.log(data);
-  const onViewContact = (id: string) => {};
+  const onViewContact = (id: string) => {
+    router.push(`/public/contactos/${id}`);
+  };
+
   const onDeleteContact = (id: string) => {};
   return (
     <FlatList
@@ -16,7 +20,7 @@ export default function ListContact() {
       renderItem={({ item }) => (
         <CardContact
           contact={item.contactUser}
-          onView={() => onViewContact(item.userId)}
+          onView={() => onViewContact(item.contactUserId)}
           onDelete={() => onDeleteContact(item.userId)}
         />
       )}

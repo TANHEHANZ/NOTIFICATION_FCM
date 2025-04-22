@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Card } from "../../../shared/ui/Card";
 import { sizes, theme } from "../../../shared/components/styles/global";
 import RippleButton from "../../../shared/ui/AlertButton";
+import config from "../../../infraestructure/config/config";
 
 interface SendData {
   photos: string[];
@@ -177,7 +178,8 @@ export default function Alertas() {
 
     try {
       const response = await fetch(
-        "http://192.168.0.5:3000/v1/api/alert/reports",
+        `${config.host}/v1/api/alert/reports`,
+        // "https://munaykiapi.cochabamba.bo/v1/api/alert/reports",
         {
           method: "POST",
           body: formData,

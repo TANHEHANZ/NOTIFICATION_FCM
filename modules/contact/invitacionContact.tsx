@@ -15,7 +15,7 @@ export default function Invitacion({ hideModal, providerId }: propsInvitacion) {
   const getData = async () => {
     if (providerId) {
       const redirect = appUrl + "?Nick=" + providerId;
-      const url = `https://munaykiv3.vercel.app/v1/api/contact/invitacion?redirect=${encodeURIComponent(
+      const url = `https://munaykiapi.cochabamba.bo/v1/api/contact/invitacion?redirect=${encodeURIComponent(
         redirect
       )}`;
       setBackendUrl(url);
@@ -48,7 +48,9 @@ export default function Invitacion({ hideModal, providerId }: propsInvitacion) {
           shareLink();
         }}
       >
-        <Text style={styles.modalButtonText}>Guardar</Text>
+        <Text style={styles.modalButtonText}>
+          Compartir enlace de invitación
+        </Text>
       </Pressable>
     </View>
   );
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   modalButton: {
     backgroundColor: theme.colors.primary,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 16,
     marginTop: 20,
   },
   modalButtonText: {
